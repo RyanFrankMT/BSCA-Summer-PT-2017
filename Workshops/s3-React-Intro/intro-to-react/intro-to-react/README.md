@@ -1,3 +1,183 @@
+NOTES ON CREATE REACT Below
+
+**Notes from meeting with Jay 8/9/2017
+
+** super()   is new and allows us to utilize a previous constructor function's function without re-writing it
+// this. shows a specific instance of that data type while 'new soccerBall' is creating the object soccerBall
+// With JSX we can code HTML right into our JS file
+//Examples of different ways to write the declaration of HelloWorld variable listed below (we used the one on line 10
+  )
+
+const HelloWorld = (props) => <div className="title">Hello {props.title}!</div>
+
+const HelloWorld = (props) => {
+  return <div className="title">Hello {props.title}!</div>
+}
+
+const HelloWorld = (props) => {
+  // code goes here
+  const title = props.title
+  return (
+    <div className="title">Hello {title}!</div>
+  )
+}
+
+const HelloWorld = (props) => (
+  <div className="title">Hello {props.title}!</div>
+)
+
+
+//This is showing the life-cycle of a react component (what happens before, during, and after the render)
+//We  did not code the constructor function in, or the 'componentWillUpdate' or the 'componentDidMount'
+class App extends Component {
+  constructor() {
+    super()
+    // do stuff first thing
+  }
+
+  componentWillUpdate(newProps) {
+    // do stuff before the render
+  }
+
+  render() {
+    return (
+      <div>
+        <NavBar />
+        <HelloWorld title={'Khalesi'} />
+        <Section content={'Tyrion is helping Khalesi topple Cerci.'} name={'Khalesi'}/>
+        <Section content={'Bozeman Splitfest 2018'} date={'February 17-19, 2017'}>
+          <About />
+        </Section>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    // called after the first render
+  }
+}
+
+
+
+//The below code shows how we can create a class and then extend upon that class while creating a new class
+// A class is made up of data and methods
+//Line 87-91 is the data
+//Line 99-107 are examples of our methods that we can call lower down when creating an instance of a ball
+
+//Lines 68-83 show the longer version of creating the soccer ball instance, whereas the class and constructor function stores methods to help us continue to create different balls
+const ballData = {
+  type: 'soccer',
+  size: 10,
+  pressure: 30,
+  speed: 0
+  isInAir: false
+}
+
+function kickBall(ballData) {
+  ballData.speed = 30
+  ballData.isInAir = true
+}
+
+function inflateBall(ballData, psiToAdd) {
+  ballData.pressure += psiToAdd
+}
+
+
+class Ball {
+  type
+  size
+  pressure
+  speed = 0
+  isInAir = false
+
+  constructor(typeArg, sizeArg, pressureArg) {
+    this.type = typeArg
+    this.size = sizeArg
+    this.pressure = pressureArg
+  }
+
+  kick() {
+    this.speed = 30
+    this.isInAir = true
+  }
+
+  inflate(psiToAdd) {
+    this.pressure += psiToAdd
+  }
+}
+
+class GpsBall extends Ball {
+  lat
+  lng
+
+  constructor(typeArg, sizeArg, pressureArg) {
+    super(typeArg, sizeArg, pressureArg)
+  }
+
+  findLocation() {
+    // reads from gps
+    this.lat = // get the lat
+    this.lng = //get the lng
+  }
+}
+
+const superBall = new GpsBall('cool ball', 40, 80)
+superBall.findLocation()
+superBall.lat
+
+const aSoccerBall = new Ball('soccer', 10, 50)
+
+const theSize = aSoccerBall.size
+aSoccerBall.kick()
+aSoccerBall.inflate(25)
+
+
+
+const aBeachBall = new Ball('beach', 36, 15)
+
+
+//This is the comparison of a smart component (lines 140-153) vs a dumb component(lines 155-164)
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <NavBar />
+        <HelloWorld title={'Khalesi'} />
+        <Section content={'Tyrion is helping Khalesi topple Cerci.'} name={'Khalesi'}/>
+        <Section content={'Bozeman Splitfest 2018'} date={'February 17-19, 2017'}>
+          <About />
+        </Section>
+      </div>
+    );
+  }
+}
+
+const App = () => (
+  <div>
+    <NavBar />
+    <HelloWorld title={'Khalesi'} />
+    <Section content={'Tyrion is helping Khalesi topple Cerci.'} name={'Khalesi'}/>
+    <Section content={'Bozeman Splitfest 2018'} date={'February 17-19, 2017'}>
+      <About />
+    </Section>
+  </div>
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -1760,7 +1940,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 

@@ -12,6 +12,7 @@ const NavBar = () =>
 
 const HelloWorld = (props) => <div className="title">Hello {props.title}!</div>
 
+
 const About = (props) => {
   const postDate = new Date()
 
@@ -24,16 +25,12 @@ const About = (props) => {
 }
 
 const Section = (props) => {
-  const name = '-' + props.name;
-
-
-
   return(
     <div className='post-card'>
-    <p>{props.content}</p>
-    <p>{props.name}</p>
-    <p>{props.date}</p>
-    <p>{props.children}</p>
+      <p>{props.content}</p>
+      <p>{props.name}</p>
+      <p>{props.date}</p>
+      <p>{props.children}</p>
     </div>
   )
 }
@@ -42,15 +39,16 @@ class App extends Component {
   render() {
     return (
       <div>
-      <NavBar />
-      <HelloWorld title={'Khalesi'} />
-      <Section content={'Tyrion is helping Khalesi topple Cerci.'} name={'Khalesi'}/>
-      <Section content={'Bozeman Splitfest 2018'} date={'February 17-19, 2017'}>
-        <About />
-      </Section>
+        <NavBar />
+        <HelloWorld title={'Khalesi'} />
+        <Section content={'Tyrion is helping Khalesi topple Cerci.'} name={'Khalesi'}/>
+        <Section content={'Bozeman Splitfest 2018'} date={'February 17-19, 2017'}>
+          <About />
+        </Section>
       </div>
     );
   }
 }
+
 
 export default App;
