@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Cookie);
 
-[v-cloak] {
+form [v-cloak] {
   display: none;
 }
 
