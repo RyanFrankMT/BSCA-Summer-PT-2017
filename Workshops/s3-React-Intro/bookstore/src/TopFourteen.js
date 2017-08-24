@@ -1,14 +1,12 @@
-import React from 'react';
-import Book from './Book';
-
-
+import React from 'react'
+import Book from './Book'
 
 const TopFourteen = (props) => {
-  return(
+  return (
     <div>
       {
-        props.books.map((book,index) =>
-        <Book book={book} rank={props.rankings[index]} readBy={props.readers[index]} key={index} />
+        props.books.map((book, index) =>
+          <Book book={book} rank={props.rankings[index]} readBy={props.readers[index]} key={index} />
         )
       }
     </div>
